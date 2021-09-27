@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: p-test
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    environment:
+      - DEBUG=True
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
